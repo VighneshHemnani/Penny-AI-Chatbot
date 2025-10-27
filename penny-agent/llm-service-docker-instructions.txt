@@ -1,0 +1,18 @@
+llm-service:
+    build: ./llm-service
+    restart: always
+    # Mount the models directory from the host into the container
+    # This assumes your GGUF file is located in voyage-vta-demo/llm-service/models/
+    volumes:
+      - ./llm-service/models:/app/models
+    ports:
+      - "8000:8000" # Expose LLM service API (llama.cpp.server default)
+    environment:
+      # Pass the model path to the startup script
+      MODEL_PATH: "/app/models/mistral-7b-instruct-v0.2.Q4_0.gguf" # Matches internal container path
+    healthcheck:
+      # This health check tests if the llama.cpp server's OpenAI-compatible API is responsive.
+      test: ["CMD-SHELL", "curl -f http://localhost:8000/v1/models || exit 1"]
+      interval: 10s # Check every 10 seconds
+      timeout: 5s   # Fail if no response within 5 seconds
+      retries: 5    # Retry 5 times before marking as unhealthy

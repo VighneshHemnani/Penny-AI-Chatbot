@@ -1,0 +1,24 @@
+/* web-frontend/styles/globals.css */
+html,
+body {
+  padding: 0;
+  margin: 0;
+  font-family: 'YourCustomFontName', sans-serif;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+@font-face {
+  font-family: 'VVCentra2-Book'; /* Choose a name for your font */
+  src: url('/fonts/VVCentra2-Book.otf') format('opentype'); /* Path relative to public folder */
+  font-weight: normal; /* Adjust if your font has different weights */
+  font-style: normal;
+  font-display: swap; /* Improves loading experience */
+}

@@ -1,0 +1,6 @@
+{
+  "version": 3,
+  "sources": [],
+  "sections": [
+    {"offset": {"line": 1, "column": 0}, "map": {"version":3,"sources":["turbopack:///[project]/styles/globals.css"],"sourcesContent":["/* web-frontend/styles/globals.css */\nhtml,\nbody {\n  padding: 0;\n  margin: 0;\n  font-family: 'YourCustomFontName', sans-serif;\n}\n\na {\n  color: inherit;\n  text-decoration: none;\n}\n\n* {\n  box-sizing: border-box;\n}\n\n@font-face {\n  font-family: 'VVCentra2-Book'; /* Choose a name for your font */\n  src: url('/fonts/VVCentra2-Book.otf') format('opentype'); /* Path relative to public folder */\n  font-weight: normal; /* Adjust if your font has different weights */\n  font-style: normal;\n  font-display: swap; /* Improves loading experience */\n}"],"names":[],"mappings":"AACA;;;;;;AAOA;;;;;AAKA;;;;AAIA"}}]
+}

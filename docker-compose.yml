@@ -1,0 +1,40 @@
+# voyage-vta-demo/docker-compose.yml
+version: '3.8'
+
+services:
+  penny-mcp-server: # NEW SERVICE: Hosts the actual tools
+    build: ./penny-mcp-server
+    restart: always
+    ports:
+      - "8002:8000" # Expose MCP server on 8002
+    environment:
+      DATABASE_URL: ${DATABASE_URL} # Passed for DB connection in future
+    healthcheck:
+      test: ["CMD-SHELL", "curl -f http://localhost:8000/ || exit 1"] # Basic FastAPI health check
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - my_shared_payment_network 
+
+  penny-agent: # Penny is now the primary agent
+    build: ./penny-agent
+    restart: always
+    ports:
+      - "8001:8000" # Expose Penny on 8001 (frontend connects here)
+    environment:
+      DATABASE_URL: ${DATABASE_URL} # Passed to Penny
+      LLM_SERVICE_URL: "http://llm-service:8000" # Penny needs to reach LLM
+    healthcheck:
+      test: ["CMD-SHELL", "curl -f http://localhost:8000/ || exit 1"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    command: ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000", "--log-level", "debug"]
+    networks:
+      - my_shared_payment_network 
+
+networks:
+  my_shared_payment_network:
+    external: true
+    name: my_shared_payment_network

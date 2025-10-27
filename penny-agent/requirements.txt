@@ -1,0 +1,9 @@
+fastapi
+uvicorn[standard]
+python-dotenv
+langchain
+langchain-core
+langchain-community
+langchain-openai # To connect to the LLM service
+httpx # For making HTTP requests to Penny MCP Server
+pydantic # For data models
