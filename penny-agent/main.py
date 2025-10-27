@@ -32,7 +32,6 @@ GROQ_BASE_URL = os.getenv("GROQ_BASE_URL")
 # --- LLM Setup (connects to the llama.cpp server) ---
 llm = ChatOpenAI(
     base_url="https://api.groq.com/openai/v1",
-    api_key="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",
     temperature=0.0, # Lower temperature for better structured output for parsing
     model_name="deepseek-r1-distill-llama-70b"
 )
